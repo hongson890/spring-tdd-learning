@@ -1,6 +1,8 @@
 package com.example.sonny.service;
 
-import com.example.sonny.dto.User;
+import com.example.sonny.controller.dto.UserDTO;
+import com.example.sonny.entity.User;
+import com.example.sonny.mapper.UserMapper;
 import com.example.sonny.repository.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,9 @@ public class UserServiceITest {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private UserMapper userMapper;
+
     @Test
     void shouldBeAbleToGetUserById() {
 
@@ -31,7 +36,7 @@ public class UserServiceITest {
 
 
         // WHEN
-        User userFound = userService.getUserById(user.getId());
+        UserDTO userFound = userService.getUserById(user.getId());
 
         // THEN
         assertEquals("Son pham", userFound.getName());

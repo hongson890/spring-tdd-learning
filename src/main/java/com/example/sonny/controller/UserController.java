@@ -1,12 +1,12 @@
 package com.example.sonny.controller;
 
-import com.example.sonny.dto.User;
+import com.example.sonny.controller.dto.UserDTO;
+import com.example.sonny.entity.User;
 import com.example.sonny.service.UserService;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.data.domain.Pageable;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/user")
@@ -19,9 +19,13 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public User getUser(@PathVariable Integer id) {
+    public UserDTO getUser(@PathVariable Integer id) {
         return userService.getUserById(id);
     }
 
+    @GetMapping("/searchUser")
+    public List<UserDTO> searchUser(@RequestParam(value="name") String name, Pageable pageable) {
+        return userService.searchUser(name, pageable);
+    }
 
 }

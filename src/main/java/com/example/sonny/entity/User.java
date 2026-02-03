@@ -1,4 +1,4 @@
-package com.example.sonny.dto;
+package com.example.sonny.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
